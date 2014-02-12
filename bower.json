@@ -6,7 +6,7 @@
 		"node_modules"
 	],
 	"dependencies": {
-		"troopjs-utils": "develop",
+		"troopjs-utils": ">=2.0",
 		"poly": "~0.6"
 	}
 }
