@@ -75,17 +75,17 @@ buster.testCase("troopjs-composer/mixin/factory", function(run) {
 
 				"Decorator.after": function() {
 					var cal = Factory.create(this.Cal, {
-						add: Decorator.after(function(sum) {
-							return sum + 1;
+						add: Decorator.after(function(a, b) {
+							assert.equals(1, a);
+							assert.equals(2, b);
 						}),
-						sub: Decorator.after(function(sub) {
-							assert.equals(sub, 1);
-							return sub - 1;
+						sub: Decorator.after(function(a, b) {
+							return -1;
 						})
 					});
 
-					assert.equals(cal.add(1, 2), 4);
-					assert.equals(cal.sub(2, 1), 0);
+					assert.equals(cal.add(1, 2), 3);
+					assert.equals(cal.sub(2, 1), -1);
 				},
 
 				"Decorator.around": function() {

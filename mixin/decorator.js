@@ -49,7 +49,8 @@ define([
 		 * Create a decorator function that is to be run ahead of the original.
 		 * @member composer.mixin.decorator
 		 * @static
-		 * @param {Function} func The decorator function which receives the same arguments as with the original.
+		 * @param {Function} func The decorator function which receives the same arguments as with the original, it's return
+		 * value (if not undefined) will be send as the arguments of original function.
 		 * @returns {composer.mixin.decorator}
 		 */
 		"before": function decorateBefore(func) {
@@ -58,7 +59,8 @@ define([
 
 				descriptor[VALUE] = next ? function() {
 					var me = this;
-					return next.apply(me, func.apply(me, arguments) || arguments);
+					var retval = func.apply(me, arguments);
+					return next.apply(me, retval !== UNDEFINED? retval : arguments);
 				} : func;
 
 				return descriptor;
@@ -69,7 +71,8 @@ define([
 		 * Create a decorator function that is to be run following the original.
 		 * @member composer.mixin.decorator
 		 * @static
-		 * @param {Function} func The decorator function which receives the return value from the original.
+		 * @param {Function} func The decorator function which receives the arguments of the original, it's return value (if
+		 * not undefined) will be the used as the new return value.
 		 * @returns {composer.mixin.decorator}
 		 */
 		"after": function decorateAfter(func) {
@@ -78,8 +81,9 @@ define([
 
 				descriptor[VALUE] = previous ? function() {
 					var me = this;
-					var ret = previous.apply(me, arguments);
-					return ret !== UNDEFINED ? func.call(me, ret) : func.apply(me, arguments);
+					var retval = previous.apply(me, arguments);
+					var newRet = func.apply(me, arguments);
+					return newRet !== UNDEFINED ? newRet : retval;
 				} : func;
 
 				return descriptor;
