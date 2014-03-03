@@ -10,7 +10,7 @@ define([ "../decorator" ], function AroundDecoratorModule(Decorator) {
 	 * return a function that is to replace the original.
 	 * @returns {Decorator}
 	 */
-	return Decorator["around"] = function around(func) {
+	return function around(func) {
 		return new Decorator(function(descriptor) {
 			descriptor[VALUE] = func(descriptor[VALUE] || NOOP);
 			return descriptor;

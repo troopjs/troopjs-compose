@@ -14,9 +14,9 @@ define([ "../decorator" ], function FromDecoratorModule(Decorator) {
 	 * @static
 	 * @param {Function} [which] The other class from which to borrow the method, otherwise to borrow from the host class.
 	 * @param {String} [prop] The property name to borrow from, otherwise to borrow the same property name.
-	 * @returns {composer.mixin.decorator}
+	 * @returns {Decorator}
 	 */
-	return Decorator["from"] = function from(which, prop) {
+	return function from(which, prop) {
 		// Shifting arguments.
 		if (typeof which === "string") {
 			prop = which;

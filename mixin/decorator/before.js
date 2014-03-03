@@ -10,7 +10,7 @@ define([ "../decorator" ], function BeforeDecoratorModule(Decorator) {
 	 * value (if not undefined) will be send as the arguments of original function.
 	 * @returns {Decorator}
 	 */
-	return Decorator["before"] = function before(func) {
+	return function before(func) {
 		return new Decorator(function(descriptor) {
 			var next = descriptor[VALUE];
 

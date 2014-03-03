@@ -12,7 +12,7 @@ define([
 	 * @param {Function|Object...} ext One or more objects to merge into this property, or a function that returns a new object to be used.
 	 * @returns {Decorator}
 	 */
-	return Decorator["extend"] = function extend(ext) {
+	return function extend(ext) {
 		var args = arguments;
 
 		return new Decorator(function(descriptor, name, descriptors) {

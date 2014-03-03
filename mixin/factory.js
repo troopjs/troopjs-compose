@@ -6,11 +6,6 @@ define([
 	"module",
 	"troopjs-utils/unique",
 	"./decorator",
-	"./decorator/after",
-	"./decorator/around",
-	"./decorator/before",
-	"./decorator/extend",
-	"./decorator/from",
 	"poly/object"
 ], function FactoryModule(module, unique, Decorator) {
 	"use strict";

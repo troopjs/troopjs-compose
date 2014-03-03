@@ -10,7 +10,7 @@ define([ "../decorator" ], function AfterDecoratorModule(Decorator) {
 	 * not undefined) will be the used as the new return value.
 	 * @returns {Decorator}
 	 */
-	return Decorator["after"] = function after(func) {
+	return function after(func) {
 		return new Decorator(function(descriptor) {
 			var previous = descriptor[VALUE];
 
