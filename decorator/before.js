@@ -1,4 +1,9 @@
+/*
+ * TroopJS composer/decorator/before
+ * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ */
 define([ "../mixin/decorator" ], function BeforeDecoratorModule(Decorator) {
+	"use strict";
 
 	var UNDEFINED;
 	var VALUE = "value";

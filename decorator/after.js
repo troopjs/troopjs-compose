@@ -1,4 +1,9 @@
+/*
+ * TroopJS composer/decorator/after
+ * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ */
 define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
+	"use strict";
 
 	var UNDEFINED;
 	var VALUE = "value";

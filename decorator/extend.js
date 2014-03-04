@@ -1,7 +1,12 @@
+/*
+ * TroopJS composer/decorator/extend
+ * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ */
 define([
 	"../mixin/decorator",
 	"troopjs-utils/merge"
 ], function ExtendDecoratorModule(Decorator, merge) {
+	"use strict";
 
 	var UNDEFINED;
 	var VALUE = "value";

@@ -1,4 +1,9 @@
+/*
+ * TroopJS composer/decorator/around
+ * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ */
 define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
+	"use strict";
 
 	var VALUE = "value";
 	var NOOP = function () {};

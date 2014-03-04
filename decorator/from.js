@@ -1,4 +1,9 @@
+/*
+ * TroopJS composer/decorator/from
+ * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ */
 define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
+	"use strict";
 
 	var UNDEFINED;
 	var VALUE = "value";
