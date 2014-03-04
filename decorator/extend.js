@@ -22,7 +22,7 @@ define([
 	return function extend(ext) {
 		var args = arguments;
 
-		return new Decorator(function(descriptor, name, descriptors) {
+		return new Decorator(function (descriptor, name, descriptors) {
 			var previous = descriptors[name][VALUE];
 			var val;
 
@@ -30,7 +30,7 @@ define([
 				val = ext(previous);
 			}
 			else if (previous !== UNDEFINED) {
-				val = merge.apply({}, ARRAY_CONCAT.apply([previous], args));
+				val = merge.apply({}, ARRAY_CONCAT.apply([ previous ], args));
 			}
 
 			descriptor[VALUE] = val;

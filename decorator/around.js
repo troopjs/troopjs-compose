@@ -17,7 +17,7 @@ define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
 	 * @returns {composer.mixin.decorator}
 	 */
 	return function around(func) {
-		return new Decorator(function(descriptor) {
+		return new Decorator(function (descriptor) {
 			descriptor[VALUE] = func(descriptor[VALUE] || NOOP);
 			return descriptor;
 		});

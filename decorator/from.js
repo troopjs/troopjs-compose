@@ -24,7 +24,7 @@ define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 			which = UNDEFINED;
 		}
 
-		return new Decorator(function(descriptor, name, descriptors) {
+		return new Decorator(function (descriptor, name, descriptors) {
 			// To override a specified property, otherwise simply this property.
 			name = prop || name;
 

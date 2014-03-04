@@ -17,11 +17,11 @@ define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
 	 * @returns {composer.mixin.decorator}
 	 */
 	return function after(func) {
-		return new Decorator(function(descriptor) {
+		return new Decorator(function (descriptor) {
 			var previous = descriptor[VALUE];
 
 			descriptor[VALUE] = previous
-				? function() {
+				? function decorated_after() {
 					var me = this;
 					var retval = previous.apply(me, arguments);
 					var newRet = func.apply(me, arguments);
