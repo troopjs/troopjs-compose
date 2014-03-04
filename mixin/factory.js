@@ -5,8 +5,9 @@
 define([
 	"module",
 	"troopjs-utils/unique",
+	"./decorator",
 	"poly/object"
-], function FactoryModule(module, unique) {
+], function FactoryModule(module, unique, Decorator) {
 	"use strict";
 
 	/**
@@ -93,10 +94,6 @@ define([
 	var EXTEND = "extend";
 	var CREATE = "create";
 	var DECORATE = "decorate";
-	var DECORATED = "decorated";
-	var BEFORE = "before";
-	var AFTER = "after";
-	var AROUND = "around";
 	var CONSTRUCTOR = "constructor";
 	var CONSTRUCTORS = "constructors";
 	var SPECIALS = "specials";
@@ -107,10 +104,8 @@ define([
 	var TYPES = "types";
 	var NAME = "name";
 	var RE_SPECIAL = /^(\w+)(?::(.+?))?\/([-_./\d\w\s]+)$/;
-	var NOOP = function noop () {};
 	var PRAGMAS = module.config().pragmas || [];
 	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
-	var factoryDescriptors = {};
 
 	/**
 	 * Sub classing from this object, and to instantiate it immediately.
@@ -138,111 +133,6 @@ define([
 		return Factory.apply(null, args);
 	}
 
-	/**
-	 * Creates new Decorator
-	 * @private
-	 * @class composer.mixin.factory.Decorator
-	 * @param {Function} decorated Original function
-	 * @param {Function} decorate Function to re-write descriptor
-	 */
-	function Decorator(decorated, decorate) {
-		var descriptor = {};
-
-		// Add DECORATED to descriptor
-		descriptor[DECORATED] = {
-			"value" : decorated
-		};
-
-		// Add DECORATE to descriptor
-		descriptor[DECORATE] = {
-			"value" : decorate
-		};
-
-		// Define properties
-		Object.defineProperties(this, descriptor);
-	}
-
-	/**
-	 * Create a decorator function property to override the original one from prototype, that runs before
-	 * the start of the former.
-	 *
-	 * @member composer.mixin.factory
-	 * @static
-	 * @param {Function} decorated The decorator function which receives the same arguments as with the original.
-	 * @returns {composer.mixin.factory.Decorator}
-	 */
-	function before(decorated) {
-		return new Decorator(decorated, before[DECORATE]);
-	}
-
-	before[DECORATE] = function (descriptor) {
-		var previous = this[DECORATED];
-		var next = descriptor[VALUE];
-
-		descriptor[VALUE] = next
-			? function () {
-			var me = this;
-			var args = arguments;
-			return next.apply(me, args = previous.apply(me, args) || args);
-		}
-			: previous;
-
-		return descriptor;
-	};
-
-	/**
-	 * Create a decorator function property to override the original one from prototype, that runs after
-	 * the completion of the former.
-	 *
-	 * @member composer.mixin.factory
-	 * @static
-	 * @param {Function} decorated The decorator function which receives the return value from the original.
-	 * @returns {composer.mixin.factory.Decorator}
-	 */
-	function after(decorated) {
-		return new Decorator(decorated, after[DECORATE]);
-	}
-
-	after[DECORATE] = function (descriptor) {
-		var previous = descriptor[VALUE];
-		var next = this[DECORATED];
-
-
-		descriptor[VALUE] = previous
-			? function () {
-				var me = this;
-				var args = arguments;
-				return next.apply(me, args = previous.apply(me, args) || args);
-			}
-			: next;
-
-		return descriptor;
-	};
-
-	/**
-	 * Create a decorator function property to override the original one from prototype, that get passed the original
-	 * function, eventually reach the maximum flexibility on execution flow.
-	 *
-	 * @member composer.mixin.factory
-	 * @static
-	 * @param {Function} decorated The decorator function which receives the original function as parameter.
-	 * @returns {composer.mixin.factory.Decorator}
-	 */
-	function around(decorated) {
-		return new Decorator(decorated, around[DECORATE]);
-	}
-
-	/**
-	 *
-	 * @param {Function} descriptor
-	 * @returns {*}
-	 */
-	around[DECORATE] = function (descriptor) {
-		descriptor[VALUE] = this[DECORATED](descriptor[VALUE] || NOOP);
-
-		return descriptor;
-	};
-
 	/*
 	 * Returns a string representation of this constructor
 	 * @member composer.mixin.factory
@@ -257,7 +147,6 @@ define([
 			? prototype[DISPLAYNAME]
 			: OBJECT_TOSTRING.call(me);
 	}
-
 
 	/**
 	 * The class composer function.
@@ -374,7 +263,7 @@ define([
 							"enumerable" : true,
 							"configurable" : true,
 							"writable" : true
-						})
+						}, name, prototypeDescriptors)
 						: descriptor;
 				}
 			}
@@ -482,29 +371,11 @@ define([
 	}
 
 	// Add CREATE to factoryDescriptors
-	factoryDescriptors[CREATE] = {
-		"value" : function FactoryCreate() {
+	Object.defineProperty(Factory, CREATE, {
+		"value": function FactoryCreate() {
 			return Factory.apply(null, arguments)();
 		}
-	};
-
-	// Add BEFORE to factoryDescriptors
-	factoryDescriptors[BEFORE] = {
-		"value" : before
-	};
-
-	// Add AFTER to factoryDescriptors
-	factoryDescriptors[AFTER] = {
-		"value" : after
-	};
-
-	// Add AROUND to factoryDescriptors
-	factoryDescriptors[AROUND] = {
-		"value" : around
-	};
-
-	// Define factoryDescriptors on Factory
-	Object.defineProperties(Factory, factoryDescriptors);
+	});
 
 	// Return Factory
 	return Factory;
