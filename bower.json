@@ -7,6 +7,6 @@
 	],
 	"dependencies": {
 		"troopjs-utils": "~2",
-		"poly": "~0.6"
+		"poly": "~0"
 	}
 }
