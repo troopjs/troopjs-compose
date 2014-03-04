@@ -1,14 +1,15 @@
-define([ "../decorator" ], function BeforeDecoratorModule(Decorator) {
+define([ "../mixin/decorator" ], function BeforeDecoratorModule(Decorator) {
 
 	var UNDEFINED;
 	var VALUE = "value";
 
 	/**
-	 * Create a decorator function that is to be run ahead of the original.
-	 * @static
+	 * Create a decorator method that is to add code that will be executed before the original method.
+	 *
+	 * @class composer.decorator.before
 	 * @param {Function} func The decorator function which receives the same arguments as with the original, it's return
 	 * value (if not undefined) will be send as the arguments of original function.
-	 * @returns {Decorator}
+	 * @returns {composer.mixin.decorator}
 	 */
 	return function before(func) {
 		return new Decorator(function(descriptor) {

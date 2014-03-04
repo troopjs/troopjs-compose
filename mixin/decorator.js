@@ -7,7 +7,6 @@ define([ "poly/object" ], function DecoratorModule() {
 
 	/**
 	 * Decorator provides customized way to add properties/methods to object created by {@link composer.mixin.factory}.
-	 * Several decorators are provided by this module.
 	 * @class composer.mixin.decorator
 	 * @constructor
 	 * @param {Function} decorate Function that defines how to override the original one.

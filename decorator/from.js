@@ -1,20 +1,16 @@
-define([ "../decorator" ], function FromDecoratorModule(Decorator) {
+define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 
 	var UNDEFINED;
 	var VALUE = "value";
 	var PROTOTYPE = "prototype";
 
 	/**
-	 * Create a decorator that is to lend from a particular property from this own or the other class.
+	 * Create a decorator that is to lend from a particular property from this own or the other factory.
 	 *
-	 *  Decorator.from(Foo);
-	 *  Decorator.from("prop");
-	 *  Decorator.from(Foo, "other");
-	 *
-	 * @static
+	 * @class composer.decorator.from
 	 * @param {Function} [which] The other class from which to borrow the method, otherwise to borrow from the host class.
 	 * @param {String} [prop] The property name to borrow from, otherwise to borrow the same property name.
-	 * @returns {Decorator}
+	 * @returns {composer.mixin.decorator}
 	 */
 	return function from(which, prop) {
 		// Shifting arguments.
