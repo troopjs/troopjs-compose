@@ -10,7 +10,6 @@ define([
 ], function FactoryModule(module, unique, Decorator) {
 	"use strict";
 
-	var UNDEFINED;
 	var PROTOTYPE = "prototype";
 	var TOSTRING = "toString";
 	var ARRAY_PROTO = Array[PROTOTYPE];
