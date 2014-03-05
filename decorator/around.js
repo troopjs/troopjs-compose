@@ -12,6 +12,7 @@ define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
 	 * Create a decorator that is to override an existing method.
 	 *
 	 * @class composer.decorator.around
+	 * @static
 	 * @param {Function} func The decorator function which receives the original function as parameter and is supposed to
 	 * return a function that is to replace the original.
 	 * @returns {composer.mixin.decorator}
