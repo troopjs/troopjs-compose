@@ -241,7 +241,11 @@ define([
 					special[FEATURES] = matches[2];
 					special[TYPE] = type = matches[3];
 					special[NAME] = group + "/" + type;
-					special[VALUE] = arg[nameRaw];
+
+					// If the VALUE of the special does not duck-type Function, we should not store it
+					if (OBJECT_TOSTRING.call(special[VALUE] = arg[nameRaw]) !== "[object Function]") {
+						continue;
+					}
 
 					// Unshift special onto specials
 					ARRAY_UNSHIFT.call(specials, special);
