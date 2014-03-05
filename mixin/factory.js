@@ -1,6 +1,5 @@
 /*
- * TroopJS composer/mixin/factory
- * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ * @license MIT http://troopjs.mit-license.org/
  */
 define([
 	"module",
@@ -9,72 +8,6 @@ define([
 	"poly/object"
 ], function FactoryModule(module, unique, Decorator) {
 	"use strict";
-
-	var PROTOTYPE = "prototype";
-	var TOSTRING = "toString";
-	var ARRAY_PROTO = Array[PROTOTYPE];
-	var ARRAY_PUSH = ARRAY_PROTO.push;
-	var ARRAY_UNSHIFT = ARRAY_PROTO.unshift;
-	var OBJECT_TOSTRING = Object[PROTOTYPE][TOSTRING];
-	var TYPEOF_FUNCTION = "function";
-	var DISPLAYNAME = "displayName";
-	var LENGTH = "length";
-	var EXTEND = "extend";
-	var CREATE = "create";
-	var DECORATE = "decorate";
-	var CONSTRUCTOR = "constructor";
-	var CONSTRUCTORS = "constructors";
-	var SPECIALS = "specials";
-	var GROUP = "group";
-	var VALUE = "value";
-	var FEATURES = "features";
-	var TYPE = "type";
-	var TYPES = "types";
-	var NAME = "name";
-	var RE_SPECIAL = /^(\w+)(?::(.+?))?\/([-_./\d\w\s]+)$/;
-	var PRAGMAS = module.config().pragmas || [];
-	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
-
-	/**
-	 * Sub classing from this object, and to instantiate it immediately.
-	 * @member composer.mixin.factory
-	 * @static
-	 * @inheritdoc #Factory
-	 * @returns {Object} Instance of this class.
-	 */
-	function create() {
-		/*jshint validthis:true*/
-		return extend.apply(this, arguments)();
-	}
-
-	/**
-	 * Sub classing from this object.
-	 * @member composer.mixin.factory
-	 * @static
-	 * @inheritdoc #Factory
-	 * @returns {Function} The extended subclass.
-	 */
-	function extend() {
-		/*jshint validthis:true*/
-		var args = [ this ];
-		ARRAY_PUSH.apply(args, arguments);
-		return Factory.apply(null, args);
-	}
-
-	/*
-	 * Returns a string representation of this constructor
-	 * @member composer.mixin.factory
-	 * @static
-	 * @returns {String}
-	 */
-	function ConstructorToString() {
-		var me = this;
-		var prototype = me[PROTOTYPE];
-
-		return DISPLAYNAME in prototype
-			? prototype[DISPLAYNAME]
-			: OBJECT_TOSTRING.call(me);
-	}
 
 	/**
 	 * The factory module establishes the fundamental object composition in TroopJS:
@@ -146,14 +79,77 @@ define([
 	 *  		instance.evenMore();
 	 *
 	 * @class composer.mixin.factory
-	 * @static
-	 * @constructor
-	 * @method Factory
-	 * @param {Function...} constructor One or more function(s) to be called upon.
-	 * @param {Object} spec The object specification that describes properties.
+	 * @singleton
+	 */
+
+	var PROTOTYPE = "prototype";
+	var TOSTRING = "toString";
+	var ARRAY_PROTO = Array[PROTOTYPE];
+	var ARRAY_PUSH = ARRAY_PROTO.push;
+	var ARRAY_UNSHIFT = ARRAY_PROTO.unshift;
+	var OBJECT_TOSTRING = Object[PROTOTYPE][TOSTRING];
+	var TYPEOF_FUNCTION = "function";
+	var DISPLAYNAME = "displayName";
+	var LENGTH = "length";
+	var EXTEND = "extend";
+	var CREATE = "create";
+	var DECORATE = "decorate";
+	var CONSTRUCTOR = "constructor";
+	var CONSTRUCTORS = "constructors";
+	var SPECIALS = "specials";
+	var GROUP = "group";
+	var VALUE = "value";
+	var FEATURES = "features";
+	var TYPE = "type";
+	var TYPES = "types";
+	var NAME = "name";
+	var RE_SPECIAL = /^(\w+)(?::(.+?))?\/([-_./\d\w\s]+)$/;
+	var PRAGMAS = module.config().pragmas || [];
+	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
+
+	/**
+	 * Sub classing from this object, and to instantiate it immediately.
+	 * @inheritdoc #constructor
+	 * @returns {Object} Instance of this class.
+	 */
+	function create() {
+		/*jshint validthis:true*/
+		return extend.apply(this, arguments)();
+	}
+
+	/**
+	 * Sub classing from this object.
+	 * @inheritdoc #constructor
+	 * @returns {Function} The extended subclass.
+	 */
+	function extend() {
+		/*jshint validthis:true*/
+		var args = [ this ];
+		ARRAY_PUSH.apply(args, arguments);
+		return Factory.apply(null, args);
+	}
+
+	/**
+	 * Returns a string representation of this constructor
+	 * @ignore
+	 * @returns {String}
+	 */
+	function ConstructorToString() {
+		var me = this;
+		var prototype = me[PROTOTYPE];
+
+		return DISPLAYNAME in prototype
+			? prototype[DISPLAYNAME]
+			: OBJECT_TOSTRING.call(me);
+	}
+
+	/**
+	 * @member composer.mixin.factory
+	 * @method constructor
+	 * @param {...Function|Object} spec One or more function(s) to be called upon or object specification that describes properties.
 	 * @returns {Function} The constructor (class).
 	 */
-	function Factory (constructor, spec) {
+	function Factory (spec) {
 		var special;
 		var specials = [];
 		var specialsLength;

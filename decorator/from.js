@@ -1,9 +1,13 @@
 /*
- * TroopJS composer/decorator/from
- * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ * @license MIT http://troopjs.mit-license.org/
  */
 define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 	"use strict";
+
+	/**
+	 * @class composer.decorator.from
+	 * @singleton
+	 */
 
 	var UNDEFINED;
 	var VALUE = "value";
@@ -11,9 +15,7 @@ define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 
 	/**
 	 * Create a decorator that is to lend from a particular property from this own or the other factory.
-	 *
-	 * @class composer.decorator.from
-	 * @static
+	 * @method constructor
 	 * @param {Function} [which] The other class from which to borrow the method, otherwise to borrow from the host class.
 	 * @param {String} [prop] The property name to borrow from, otherwise to borrow the same property name.
 	 * @returns {composer.mixin.decorator}

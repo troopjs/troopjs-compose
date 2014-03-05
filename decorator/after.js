@@ -1,18 +1,20 @@
 /*
- * TroopJS composer/decorator/after
- * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ * @license MIT http://troopjs.mit-license.org/
  */
 define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
 	"use strict";
+
+	/**
+	 * @class composer.decorator.after
+	 * @singleton
+	 */
 
 	var UNDEFINED;
 	var VALUE = "value";
 
 	/**
 	 * Create a decorator method that is to add code that will be executed after the original method.
-	 *
-	 * @class composer.decorator.after
-	 * @static
+	 * @method constructor
 	 * @param {Function} func The decorator function which receives the arguments of the original, it's return value (if
 	 * not undefined) will be the used as the new return value.
 	 * @returns {composer.mixin.decorator}

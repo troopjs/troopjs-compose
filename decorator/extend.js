@@ -1,6 +1,5 @@
 /*
- * TroopJS composer/decorator/extend
- * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ * @license MIT http://troopjs.mit-license.org/
  */
 define([
 	"../mixin/decorator",
@@ -8,15 +7,18 @@ define([
 ], function ExtendDecoratorModule(Decorator, merge) {
 	"use strict";
 
+	/**
+	 * @class composer.decorator.extend
+	 * @singleton
+	 */
+
 	var UNDEFINED;
 	var VALUE = "value";
 	var ARRAY_CONCAT = Array.prototype.concat;
 
 	/**
 	 * Create a decorator that is to augment an existing Object property.
-	 *
-	 * @class composer.decorator.extend
-	 * @static
+	 * @method constructor
 	 * @param {Function|Object...} ext One or more objects to merge into this property, or a function that returns a new object to be used.
 	 * @returns {composer.mixin.decorator}
 	 */

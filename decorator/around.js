@@ -1,18 +1,20 @@
 /*
- * TroopJS composer/decorator/around
- * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ * @license MIT http://troopjs.mit-license.org/
  */
 define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
 	"use strict";
+
+	/**
+	 * @class composer.decorator.around
+	 * @singleton
+	 */
 
 	var VALUE = "value";
 	var NOOP = function () {};
 
 	/**
 	 * Create a decorator that is to override an existing method.
-	 *
-	 * @class composer.decorator.around
-	 * @static
+	 * @method constructor
 	 * @param {Function} func The decorator function which receives the original function as parameter and is supposed to
 	 * return a function that is to replace the original.
 	 * @returns {composer.mixin.decorator}

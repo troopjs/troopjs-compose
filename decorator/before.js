@@ -1,18 +1,20 @@
 /*
- * TroopJS composer/decorator/before
- * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+ * @license MIT http://troopjs.mit-license.org/
  */
 define([ "../mixin/decorator" ], function BeforeDecoratorModule(Decorator) {
 	"use strict";
+
+	/**
+	 * @class composer.decorator.before
+	 * @singleton
+	 */
 
 	var UNDEFINED;
 	var VALUE = "value";
 
 	/**
 	 * Create a decorator method that is to add code that will be executed before the original method.
-	 *
-	 * @class composer.decorator.before
-	 * @static
+	 * @method constructor
 	 * @param {Function} func The decorator function which receives the same arguments as with the original, it's return
 	 * value (if not undefined) will be send as the arguments of original function.
 	 * @returns {composer.mixin.decorator}
