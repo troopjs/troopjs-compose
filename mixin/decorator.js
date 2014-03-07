@@ -13,6 +13,9 @@ define([ "poly/object" ], function DecoratorModule() {
 	 * Creates a new decorator
 	 * @method constructor
 	 * @param {Function} decorate Function that defines how to override the original one.
+	 * @param {Object} decorate.descriptor The object descriptor that is the current property.
+	 * @param {String} decorate.name The property name.
+	 * @param {Object} decorate.descriptors List of all property descriptors of the host object.
 	 */
 	return function Decorator(decorate) {
 
