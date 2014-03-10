@@ -109,20 +109,20 @@ define([
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
-	 * @param {Function|Object} mixin One or more constructors or objects to mixin from.
+	 * @param {...Function|...Object} mixin One or more constructors or objects to mixin from.
 	 * @returns {Object} Object instance created out of the mixin of constructors and objects.
 	 */
-	function create() {
+	function create(mixin) {
 		/*jshint validthis:true*/
 		return extend.apply(this, arguments)();
 	}
 
 	/**
 	 * Extend this constructor from multiple others constructors/objects.
-	 * @param {Function|Object} mixin One or more constructors or objects to mixin from.
+	 * @param {...Function|...Object} mixin One or more constructors or objects to mixin from.
 	 * @returns {Function} The extended subclass.
 	 */
-	function extend() {
+	function extend(mixin) {
 		/*jshint validthis:true*/
 		var args = [ this ];
 		ARRAY_PUSH.apply(args, arguments);
@@ -147,10 +147,10 @@ define([
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @member composer.mixin.factory
 	 * @method constructor
-	 * @param {Function|Object} mixin One or more constructors or objects to be mixed in.
+	 * @param {...Function|...Object} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Function} The constructor (class).
 	 */
-	function Factory (spec) {
+	function Factory (mixin) {
 		var special;
 		var specials = [];
 		var specialsLength;
