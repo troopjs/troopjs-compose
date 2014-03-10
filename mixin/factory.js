@@ -108,21 +108,21 @@ define([
 	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
 
 	/**
-	 * Sub classing from this object, and to instantiate it immediately.
-	 * @inheritdoc #constructor
-	 * @returns {Object} Instance of this class.
+	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
+	 * @param {...Function|...Object} mixin One or more constructors or objects to mixin from.
+	 * @returns {Object} Object instance created out of the mixin of constructors and objects.
 	 */
-	function create() {
+	function create(mixin) {
 		/*jshint validthis:true*/
 		return extend.apply(this, arguments)();
 	}
 
 	/**
-	 * Sub classing from this object.
-	 * @inheritdoc #constructor
+	 * Extend this constructor from multiple others constructors/objects.
+	 * @param {...Function|...Object} mixin One or more constructors or objects to mixin from.
 	 * @returns {Function} The extended subclass.
 	 */
-	function extend() {
+	function extend(mixin) {
 		/*jshint validthis:true*/
 		var args = [ this ];
 		ARRAY_PUSH.apply(args, arguments);
@@ -144,12 +144,13 @@ define([
 	}
 
 	/**
+	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @member composer.mixin.factory
 	 * @method constructor
-	 * @param {...Function|Object} spec One or more function(s) to be called upon or object specification that describes properties.
+	 * @param {...Function|...Object} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Function} The constructor (class).
 	 */
-	function Factory (spec) {
+	function Factory (mixin) {
 		var special;
 		var specials = [];
 		var specialsLength;
