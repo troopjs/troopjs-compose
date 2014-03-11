@@ -109,7 +109,7 @@ define([
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
-	 * @inheritdoc #constructor
+	 * @param {...Function|...Object} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Object} Object instance created out of the mixin of constructors and objects.
 	 */
 	function create(mixin) {
@@ -119,7 +119,7 @@ define([
 
 	/**
 	 * Extend this constructor from multiple others constructors/objects.
-	 * @inheritdoc #constructor
+	 * @param {...Function|...Object} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Function} The extended subclass.
 	 */
 	function extend(mixin) {
