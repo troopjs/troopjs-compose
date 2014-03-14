@@ -103,13 +103,13 @@ define([
 	var TYPE = "type";
 	var TYPES = "types";
 	var NAME = "name";
-	var RE_SPECIAL = /^(\w+)(?::(.+?))?\/([-_./\d\w\s]+)$/;
+	var RE_SPECIAL = /^(\w+)(?::(.+?))?\/(.+)/;
 	var PRAGMAS = module.config().pragmas || [];
 	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
-	 * @param {...Function|...Object} mixin One or more constructors or objects to be mixed in.
+	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Object} Object instance created out of the mixin of constructors and objects.
 	 */
 	function create(mixin) {
@@ -119,7 +119,7 @@ define([
 
 	/**
 	 * Extend this constructor from multiple others constructors/objects.
-	 * @param {...Function|...Object} mixin One or more constructors or objects to be mixed in.
+	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Function} The extended subclass.
 	 */
 	function extend(mixin) {
@@ -147,7 +147,7 @@ define([
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @member composer.mixin.factory
 	 * @method constructor
-	 * @param {...Function|...Object} mixin One or more constructors or objects to be mixed in.
+	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Function} The constructor (class).
 	 */
 	function Factory (mixin) {
