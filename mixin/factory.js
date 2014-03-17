@@ -2,11 +2,11 @@
  * @license MIT http://troopjs.mit-license.org/
  */
 define([
-	"module",
-	"troopjs-utils/unique",
+	"./config",
 	"./decorator",
+	"troopjs-utils/unique",
 	"poly/object"
-], function FactoryModule(module, unique, Decorator) {
+], function FactoryModule(config, Decorator, unique) {
 	"use strict";
 
 	/**
@@ -79,6 +79,7 @@ define([
 	 *  		instance.evenMore();
 	 *
 	 * @class composer.mixin.factory
+	 * @mixin composer.mixin.config
 	 * @static
 	 */
 
@@ -103,8 +104,8 @@ define([
 	var TYPE = "type";
 	var TYPES = "types";
 	var NAME = "name";
-	var RE_SPECIAL = /^(\w+)(?::(.+?))?\/(.+)/;
-	var PRAGMAS = module.config().pragmas || [];
+	var RE_SPECIAL = config["pattern"];
+	var PRAGMAS = config["pragmas"];
 	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
 
 	/**
