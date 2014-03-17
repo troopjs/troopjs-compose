@@ -111,7 +111,7 @@ define([
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
 	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {Object} Object instance created out of the mixin of constructors and objects.
+	 * @returns {composer.mixin} Object instance created out of the mixin of constructors and objects.
 	 */
 	function create(mixin) {
 		/*jshint validthis:true*/
@@ -122,7 +122,7 @@ define([
 	 * Extend this constructor from multiple others constructors/objects.
 	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {Function} The extended subclass.
+	 * @returns {composer.mixin} The extended subclass.
 	 */
 	function extend(mixin) {
 		/*jshint validthis:true*/
@@ -151,7 +151,7 @@ define([
 	 * @method constructor
 	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {Function} The constructor (class).
+	 * @returns {composer.mixin} The constructor (class).
 	 */
 	function Factory (mixin) {
 		var special;
