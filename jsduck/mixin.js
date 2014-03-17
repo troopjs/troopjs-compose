@@ -8,10 +8,12 @@
 
 
 /**
+ * Extend this constructor from multiple others constructors/objects.
  * @method extend
- * @inheritdoc composer.mixin.factory#extend
- * @static
  * @inheritable
+ * @static
+ * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
+ * @returns {composer.mixin} The extended subclass.
  */
 
 /**

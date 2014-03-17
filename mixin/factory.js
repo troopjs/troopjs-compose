@@ -119,12 +119,6 @@ define([
 		return extend.apply(this, arguments)();
 	}
 
-	/**
-	 * Extend this constructor from multiple others constructors/objects.
-	 * @static
-	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {composer.mixin} The extended subclass.
-	 */
 	function extend(mixin) {
 		/*jshint validthis:true*/
 		var args = [ this ];
