@@ -79,7 +79,7 @@ define([
 	 *  		instance.evenMore();
 	 *
 	 * @class composer.mixin.factory
-	 * @singleton
+	 * @static
 	 */
 
 	var PROTOTYPE = "prototype";
@@ -109,6 +109,7 @@ define([
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
+	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Object} Object instance created out of the mixin of constructors and objects.
 	 */
@@ -119,6 +120,7 @@ define([
 
 	/**
 	 * Extend this constructor from multiple others constructors/objects.
+	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Function} The extended subclass.
 	 */
@@ -147,6 +149,7 @@ define([
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @member composer.mixin.factory
 	 * @method constructor
+	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
 	 * @returns {Function} The constructor (class).
 	 */
