@@ -79,8 +79,24 @@ define([
 	 *  		instance.evenMore();
 	 *
 	 * @class composer.mixin.factory
+	 * @mixin Function
 	 * @mixin composer.mixin.config
 	 * @static
+	 */
+
+	/**
+	 * @method apply
+	 * @hide
+	 */
+
+	/**
+	 * @method bind
+	 * @hide
+	 */
+
+	/**
+	 * @method call
+	 * @hide
 	 */
 
 	var PROTOTYPE = "prototype";
@@ -142,9 +158,7 @@ define([
 
 	/**
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
-	 * @member composer.mixin.factory
 	 * @method constructor
-	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
 	 * @returns {composer.mixin} The constructor (class).
 	 */

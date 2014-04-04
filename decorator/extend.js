@@ -9,7 +9,7 @@ define([
 
 	/**
 	 * @class composer.decorator.extend
-	 * @extends composer.decorator
+	 * @mixin Function
 	 * @static
 	 */
 
@@ -20,7 +20,6 @@ define([
 	/**
 	 * Create a decorator that is to augment an existing Object property.
 	 * @method constructor
-	 * @static
 	 * @param {Function|Object...} ext One or more objects to merge into this property, or a function that returns a new object to be used.
 	 * @returns {composer.mixin.decorator}
 	 */

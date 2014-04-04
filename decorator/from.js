@@ -6,7 +6,7 @@ define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 
 	/**
 	 * @class composer.decorator.from
-	 * @extends composer.decorator
+	 * @mixin Function
 	 * @static
 	 */
 
@@ -17,7 +17,6 @@ define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 	/**
 	 * Create a decorator that is to lend from a particular property from this own or the other factory.
 	 * @method constructor
-	 * @static
 	 * @param {Function} [which] The other class from which to borrow the method, otherwise to borrow from the host class.
 	 * @param {String} [prop] The property name to borrow from, otherwise to borrow the same property name.
 	 * @returns {composer.mixin.decorator}
