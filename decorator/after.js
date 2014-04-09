@@ -6,8 +6,8 @@ define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
 
 	/**
 	 * @class composer.decorator.after
-	 * @mixin Function
 	 * @static
+	 * @alias feature.decorator
 	 */
 
 	var UNDEFINED;

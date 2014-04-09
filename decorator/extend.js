@@ -9,8 +9,8 @@ define([
 
 	/**
 	 * @class composer.decorator.extend
-	 * @mixin Function
 	 * @static
+	 * @alias feature.decorator
 	 */
 
 	var UNDEFINED;

@@ -6,8 +6,8 @@ define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
 
 	/**
 	 * @class composer.decorator.around
-	 * @mixin Function
 	 * @static
+	 * @alias feature.decorator
 	 */
 
 	var VALUE = "value";

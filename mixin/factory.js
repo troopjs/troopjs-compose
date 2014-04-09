@@ -79,24 +79,8 @@ define([
 	 *  		instance.evenMore();
 	 *
 	 * @class composer.mixin.factory
-	 * @mixin Function
 	 * @mixin composer.mixin.config
 	 * @static
-	 */
-
-	/**
-	 * @method apply
-	 * @hide
-	 */
-
-	/**
-	 * @method bind
-	 * @hide
-	 */
-
-	/**
-	 * @method call
-	 * @hide
 	 */
 
 	var PROTOTYPE = "prototype";

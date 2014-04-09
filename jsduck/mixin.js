@@ -3,7 +3,7 @@
  *
  * Represents any constructor or instance returned by any {@link composer.mixin.factory} method.
  * @class composer.mixin
- * @abstract
+ * @interface
  */
 
 

@@ -8,13 +8,10 @@ define([
 	"use strict";
 
 	/**
+	 * Provides configuration for the {@link composer.mixin.factory}
 	 * @class composer.mixin.config
-	 * @mixin requirejs.config
-	 * @inheritdoc requirejs.config
-	 * @localdoc This module is to provide configuration for the {@link composer.mixin.factory}.
 	 * @protected
-	 * @static
-	 * @alias config.composer.mixin.config
+	 * @alias feature.config
 	 */
 
 	return merge.call({

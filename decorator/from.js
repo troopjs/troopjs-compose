@@ -6,8 +6,8 @@ define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 
 	/**
 	 * @class composer.decorator.from
-	 * @mixin Function
 	 * @static
+	 * @alias feature.decorator
 	 */
 
 	var UNDEFINED;
