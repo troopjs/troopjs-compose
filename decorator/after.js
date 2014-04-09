@@ -5,7 +5,7 @@ define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
 	"use strict";
 
 	/**
-	 * @class composer.decorator.after
+	 * @class compose.decorator.after
 	 * @static
 	 * @alias feature.decorator
 	 */
@@ -18,7 +18,7 @@ define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
 	 * @method constructor
 78	 * @param {Function} func The decorator function which receives the arguments of the original, it's return value (if
 	 * not undefined) will be the used as the new return value.
-	 * @returns {composer.mixin.decorator}
+	 * @returns {compose.mixin.decorator}
 	 */
 	return function after(func) {
 		return new Decorator(function (descriptor) {

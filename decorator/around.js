@@ -5,7 +5,7 @@ define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
 	"use strict";
 
 	/**
-	 * @class composer.decorator.around
+	 * @class compose.decorator.around
 	 * @static
 	 * @alias feature.decorator
 	 */
@@ -18,7 +18,7 @@ define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
 	 * @method constructor
 	 * @param {Function} func The decorator function which receives the original function as parameter and is supposed to
 	 * return a function that is to replace the original.
-	 * @returns {composer.mixin.decorator}
+	 * @returns {compose.mixin.decorator}
 	 */
 	return function around(func) {
 		return new Decorator(function (descriptor) {

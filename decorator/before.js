@@ -5,7 +5,7 @@ define([ "../mixin/decorator" ], function BeforeDecoratorModule(Decorator) {
 	"use strict";
 
 	/**
-	 * @class composer.decorator.before
+	 * @class compose.decorator.before
 	 * @static
 	 * @alias feature.decorator
 	 */
@@ -18,7 +18,7 @@ define([ "../mixin/decorator" ], function BeforeDecoratorModule(Decorator) {
 	 * @method constructor
 	 * @param {Function} func The decorator function which receives the same arguments as with the original, it's return
 	 * value (if not undefined) will be send as the arguments of original function.
-	 * @returns {composer.mixin.decorator}
+	 * @returns {compose.mixin.decorator}
 	 */
 	return function before(func) {
 		return new Decorator(function (descriptor) {

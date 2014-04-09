@@ -78,8 +78,8 @@ define([
 	 *  		instance.somethingElse();
 	 *  		instance.evenMore();
 	 *
-	 * @class composer.mixin.factory
-	 * @mixin composer.mixin.config
+	 * @class compose.mixin.factory
+	 * @mixin compose.mixin.config
 	 * @static
 	 */
 
@@ -112,7 +112,7 @@ define([
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
 	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {composer.mixin} Object instance created out of the mixin of constructors and objects.
+	 * @returns {compose.mixin} Object instance created out of the mixin of constructors and objects.
 	 */
 	function create(mixin) {
 		/*jshint validthis:true*/
@@ -144,7 +144,7 @@ define([
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @method constructor
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {composer.mixin} The constructor (class).
+	 * @returns {compose.mixin} The constructor (class).
 	 */
 	function Factory (mixin) {
 		var special;

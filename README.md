@@ -1,1 +1,1 @@
-this is the troopjs-composer project
+this is the troopjs-compose project

@@ -8,8 +8,8 @@ define([
 	"use strict";
 
 	/**
-	 * Provides configuration for the {@link composer.mixin.factory}
-	 * @class composer.mixin.config
+	 * Provides configuration for the {@link compose.mixin.factory}
+	 * @class compose.mixin.config
 	 * @protected
 	 * @alias feature.config
 	 */

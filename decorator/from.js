@@ -5,7 +5,7 @@ define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 	"use strict";
 
 	/**
-	 * @class composer.decorator.from
+	 * @class compose.decorator.from
 	 * @static
 	 * @alias feature.decorator
 	 */
@@ -19,7 +19,7 @@ define([ "../mixin/decorator" ], function FromDecoratorModule(Decorator) {
 	 * @method constructor
 	 * @param {Function} [which] The other class from which to borrow the method, otherwise to borrow from the host class.
 	 * @param {String} [prop] The property name to borrow from, otherwise to borrow the same property name.
-	 * @returns {composer.mixin.decorator}
+	 * @returns {compose.mixin.decorator}
 	 */
 	return function from(which, prop) {
 		// Shifting arguments.
