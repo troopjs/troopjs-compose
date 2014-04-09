@@ -4,7 +4,7 @@
 define([
 	"./config",
 	"./decorator",
-	"troopjs-utils/unique",
+	"troopjs-util/unique",
 	"poly/object"
 ], function FactoryModule(config, Decorator, unique) {
 	"use strict";
