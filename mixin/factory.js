@@ -1,13 +1,12 @@
-/*
- * TroopJS composer/mixin/factory
- * @license MIT http://troopjs.mit-license.org/ © Mikael Karon mailto:mikael@karon.se
+/**
+ * @license MIT http://troopjs.mit-license.org/
  */
 define([
-	"module",
-	"troopjs-utils/unique",
+	"./config",
 	"./decorator",
+	"troopjs-util/unique",
 	"poly/object"
-], function FactoryModule(module, unique, Decorator) {
+], function FactoryModule(config, Decorator, unique) {
 	"use strict";
 
 	/**
@@ -79,7 +78,9 @@ define([
 	 *  		instance.somethingElse();
 	 *  		instance.evenMore();
 	 *
-	 * @class composer.mixin.factory
+	 * @class compose.mixin.factory
+	 * @mixin compose.mixin.config
+	 * @static
 	 */
 
 	var PROTOTYPE = "prototype";
@@ -103,40 +104,31 @@ define([
 	var TYPE = "type";
 	var TYPES = "types";
 	var NAME = "name";
-	var RE_SPECIAL = /^(\w+)(?::(.+?))?\/([-_./\d\w\s]+)$/;
-	var PRAGMAS = module.config().pragmas || [];
+	var RE_SPECIAL = config["pattern"];
+	var PRAGMAS = config["pragmas"];
 	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
 
 	/**
-	 * Sub classing from this object, and to instantiate it immediately.
-	 * @member composer.mixin.factory
+	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
 	 * @static
-	 * @inheritdoc composer.mixin.factory#Factory
-	 * @returns {Object} Instance of this class.
+	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
+	 * @returns {compose.mixin} Object instance created out of the mixin of constructors and objects.
 	 */
-	function create() {
+	function create(mixin) {
 		/*jshint validthis:true*/
 		return extend.apply(this, arguments)();
 	}
 
-	/**
-	 * Sub classing from this object.
-	 * @member composer.mixin.factory
-	 * @static
-	 * @inheritdoc composer.mixin.factory#Factory
-	 * @returns {Function} The extended subclass.
-	 */
-	function extend() {
+	function extend(mixin) {
 		/*jshint validthis:true*/
 		var args = [ this ];
 		ARRAY_PUSH.apply(args, arguments);
 		return Factory.apply(null, args);
 	}
 
-	/*
+	/**
 	 * Returns a string representation of this constructor
-	 * @member composer.mixin.factory
-	 * @static
+	 * @ignore
 	 * @returns {String}
 	 */
 	function ConstructorToString() {
@@ -149,15 +141,12 @@ define([
 	}
 
 	/**
-	 * The class composer function.
-	 * @member composer.mixin.factory
-	 * @method Factory
-	 * @constructor
-	 * @param {Function...} constructor(s) One or more function(s) to be called upon.
-	 * @param {Object} spec The object specification that describes properties.
-	 * @returns {Function} The constructor(class).
+	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
+	 * @method constructor
+	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
+	 * @returns {compose.mixin} The constructor (class).
 	 */
-	function Factory () {
+	function Factory (mixin) {
 		var special;
 		var specials = [];
 		var specialsLength;
@@ -244,7 +233,11 @@ define([
 					special[FEATURES] = matches[2];
 					special[TYPE] = type = matches[3];
 					special[NAME] = group + "/" + type;
-					special[VALUE] = arg[nameRaw];
+
+					// If the VALUE of the special does not duck-type Function, we should not store it
+					if (OBJECT_TOSTRING.call(special[VALUE] = arg[nameRaw]) !== "[object Function]") {
+						continue;
+					}
 
 					// Unshift special onto specials
 					ARRAY_UNSHIFT.call(specials, special);
@@ -377,6 +370,5 @@ define([
 		}
 	});
 
-	// Return Factory
 	return Factory;
 });

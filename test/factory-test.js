@@ -1,16 +1,16 @@
 /*globals buster:false*/
-buster.testCase("troopjs-composer/mixin/factory", function(run) {
+buster.testCase("troopjs-compose/mixin/factory", function(run) {
 	"use strict";
 
 	var assert = buster.referee.assert;
 
 	require([
-		"troopjs-composer/mixin/factory",
-		"troopjs-composer/decorator/after",
-		"troopjs-composer/decorator/around",
-		"troopjs-composer/decorator/before",
-		"troopjs-composer/decorator/extend",
-		"troopjs-composer/decorator/from"
+		"troopjs-compose/mixin/factory",
+		"troopjs-compose/decorator/after",
+		"troopjs-compose/decorator/around",
+		"troopjs-compose/decorator/before",
+		"troopjs-compose/decorator/extend",
+		"troopjs-compose/decorator/from"
 	], function(Factory, after, around, before, extend, from) {
 
 		function method1() {}
