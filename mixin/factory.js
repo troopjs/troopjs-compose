@@ -13,7 +13,7 @@ define([
 	 * The factory module establishes the fundamental object composition in TroopJS:
 	 *
 	 *  - **First-class mixin** based on prototype, that supports deterministic multiple inheritance that:
-	 *  	- Eliminating the frustrating issues from multi-tiered, single-rooted ancestry;
+	 *    - Eliminating the frustrating issues from multi-tiered, single-rooted ancestry;
 	 *    - Avoid occasionally unexpected modification from prototype chain, from the prototype-based inheritance;
 	 *    - Reduced the function creation overhead in classical inheritance pattern;
 	 *  - **Advice decorator** for method overriding without the need for super call;
@@ -110,9 +110,10 @@ define([
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
+	 * @method create
 	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {compose.mixin} Object instance created out of the mixin of constructors and objects.
+	 * @return {Object} Object instance created out of the mixin of constructors and objects.
 	 */
 	function create(mixin) {
 		/*jshint validthis:true*/
@@ -126,11 +127,6 @@ define([
 		return Factory.apply(null, args);
 	}
 
-	/**
-	 * Returns a string representation of this constructor
-	 * @ignore
-	 * @returns {String}
-	 */
 	function ConstructorToString() {
 		var me = this;
 		var prototype = me[PROTOTYPE];
@@ -143,8 +139,9 @@ define([
 	/**
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @method constructor
+	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {compose.mixin} The constructor (class).
+	 * @return {compose.mixin} Object class created out of the mixin of constructors and objects.
 	 */
 	function Factory (mixin) {
 		var special;
@@ -300,9 +297,8 @@ define([
 			group[group[LENGTH]] = type[type[LENGTH]] = special;
 		}
 
-		/*
+		/**
 		 * Component constructor
-		 * @returns {Constructor} Constructor
 		 */
 		function Constructor () {
 			// Allow to be created either via 'new' or direct invocation

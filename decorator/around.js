@@ -11,18 +11,18 @@ define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
 	 */
 
 	var VALUE = "value";
-	var NOOP = function () {};
+	var NOP = function () {};
 
 	/**
 	 * Create a decorator that is to override an existing method.
 	 * @method constructor
 	 * @param {Function} func The decorator function which receives the original function as parameter and is supposed to
 	 * return a function that is to replace the original.
-	 * @returns {compose.mixin.decorator}
+	 * @return {compose.mixin.decorator}
 	 */
 	return function around(func) {
 		return new Decorator(function (descriptor) {
-			descriptor[VALUE] = func(descriptor[VALUE] || NOOP);
+			descriptor[VALUE] = func(descriptor[VALUE] || NOP);
 			return descriptor;
 		});
 	}
