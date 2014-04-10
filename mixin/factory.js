@@ -297,9 +297,6 @@ define([
 			group[group[LENGTH]] = type[type[LENGTH]] = special;
 		}
 
-		/**
-		 * Component constructor
-		 */
 		function Constructor () {
 			// Allow to be created either via 'new' or direct invocation
 			var instance = this instanceof Constructor
