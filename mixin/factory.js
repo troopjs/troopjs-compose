@@ -106,7 +106,11 @@ define([
 	var TYPES = "types";
 	var NAME = "name";
 	var PRAGMAS = config["pragmas"];
-	var RE = /^(\w+)\/([^\(]+)(?:\((.*)\))?$/;
+
+	// A special must be in form of a function call (ended in parenthesis), and have an optional type following a slash,
+	// <special>[/<type>](<arguments>)
+	// e.g. sig/start(), hub(foo/bar/baz)
+	var RE = /^(.*?)(?:\/([^\(]+))?\((.*)\)$/;
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
@@ -227,8 +231,11 @@ define([
 
 					// Set special properties
 					special[GROUP] = group = matches[1];
-					special[TYPE] = type = matches[2];
-					special[NAME] = group + "/" + type;
+					// An optional type.
+					if (type = matches[2]) {
+						special[TYPE] = type;
+					}
+					special[NAME] = group + (type ? "/" + type : "");
 					special[ARGS] = getargs.call(matches[3] || "");
 
 					// If the VALUE of the special does not duck-type Function, we should not store it
@@ -283,19 +290,27 @@ define([
 				? specials[group]
 				: specials[groups[groups[LENGTH]] = group] = [];
 
-			// Get or create types object
-			types = TYPES in group
-				? group[TYPES]
-				: group[TYPES] = [];
+			// Create an index for each type.
+			// TODO: In the future we might want to index each nested sub type.
+			if (type) {
+				// Get or create types object
+				types = TYPES in group
+									? group[TYPES]
+									: group[TYPES] = [];
 
-			// Get or create type object
-			type = type in group
-				? group[type]
-				: group[types[types[LENGTH]] = type] = specials[name] = [];
+				// Get or create type object
+				type = type in group
+								 ? group[type]
+								 : group[types[types[LENGTH]] = type] = specials[name] = [];
+
+				type[type[LENGTH]] = special;
+			}
 
 			// Store special in group/type
-			group[group[LENGTH]] = type[type[LENGTH]] = special;
+			group[group[LENGTH]] = special;
 		}
+
+		console.log(specials);
 
 		function Constructor () {
 			// Allow to be created either via 'new' or direct invocation
