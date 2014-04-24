@@ -5,8 +5,9 @@ define([
 	"./config",
 	"./decorator",
 	"troopjs-util/unique",
+	"troopjs-util/getargs",
 	"poly/object"
-], function FactoryModule(config, Decorator, unique) {
+], function FactoryModule(config, Decorator, unique, getargs) {
 	"use strict";
 
 	/**
@@ -100,13 +101,12 @@ define([
 	var SPECIALS = "specials";
 	var GROUP = "group";
 	var VALUE = "value";
-	var FEATURES = "features";
+	var ARGS = "args";
 	var TYPE = "type";
 	var TYPES = "types";
 	var NAME = "name";
-	var RE_SPECIAL = config["pattern"];
 	var PRAGMAS = config["pragmas"];
-	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
+	var RE = /^(\w+)\/([^\(]+)(?:\((.*)\))?$/;
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
@@ -210,7 +210,7 @@ define([
 				name = nameRaw = names[j];
 
 				// Iterate PRAGMAS
-				for (k = 0; k < PRAGMAS_LENGTH; k++) {
+				for (k = 0; k < PRAGMAS[LENGTH]; k++) {
 					// Get pragma
 					pragma = PRAGMAS[k];
 
@@ -221,15 +221,15 @@ define([
 				}
 
 				// Check if this matches a SPECIAL signature
-				if ((matches = RE_SPECIAL.exec(name))) {
+				if ((matches = RE.exec(name))) {
 					// Create special
 					special = {};
 
 					// Set special properties
 					special[GROUP] = group = matches[1];
-					special[FEATURES] = matches[2];
-					special[TYPE] = type = matches[3];
+					special[TYPE] = type = matches[2];
 					special[NAME] = group + "/" + type;
+					special[ARGS] = getargs.call(matches[3] || "");
 
 					// If the VALUE of the special does not duck-type Function, we should not store it
 					if (OBJECT_TOSTRING.call(special[VALUE] = arg[nameRaw]) !== "[object Function]") {
