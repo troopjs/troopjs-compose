@@ -310,8 +310,6 @@ define([
 			group[group[LENGTH]] = special;
 		}
 
-		console.log(specials);
-
 		function Constructor () {
 			// Allow to be created either via 'new' or direct invocation
 			var instance = this instanceof Constructor
