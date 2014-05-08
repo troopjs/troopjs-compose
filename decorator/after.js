@@ -16,9 +16,9 @@ define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
 	/**
 	 * Create a decorator method that is to add code that will be executed after the original method.
 	 * @method constructor
-78	 * @param {Function} func The decorator function which receives the arguments of the original, it's return value (if
+	 * @param {Function} func The decorator function which receives the arguments of the original, it's return value (if
 	 * not undefined) will be the used as the new return value.
-	 * @returns {compose.mixin.decorator}
+	 * @return {compose.mixin.decorator}
 	 */
 	return function after(func) {
 		return new Decorator(function (descriptor) {

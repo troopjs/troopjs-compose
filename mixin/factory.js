@@ -5,15 +5,16 @@ define([
 	"./config",
 	"./decorator",
 	"troopjs-util/unique",
+	"troopjs-util/getargs",
 	"poly/object"
-], function FactoryModule(config, Decorator, unique) {
+], function FactoryModule(config, Decorator, unique, getargs) {
 	"use strict";
 
 	/**
 	 * The factory module establishes the fundamental object composition in TroopJS:
 	 *
 	 *  - **First-class mixin** based on prototype, that supports deterministic multiple inheritance that:
-	 *  	- Eliminating the frustrating issues from multi-tiered, single-rooted ancestry;
+	 *    - Eliminating the frustrating issues from multi-tiered, single-rooted ancestry;
 	 *    - Avoid occasionally unexpected modification from prototype chain, from the prototype-based inheritance;
 	 *    - Reduced the function creation overhead in classical inheritance pattern;
 	 *  - **Advice decorator** for method overriding without the need for super call;
@@ -100,19 +101,23 @@ define([
 	var SPECIALS = "specials";
 	var GROUP = "group";
 	var VALUE = "value";
-	var FEATURES = "features";
+	var ARGS = "args";
 	var TYPE = "type";
 	var TYPES = "types";
 	var NAME = "name";
-	var RE_SPECIAL = config["pattern"];
 	var PRAGMAS = config["pragmas"];
-	var PRAGMAS_LENGTH = PRAGMAS[LENGTH];
+
+	// A special must be in form of a function call (ended in parenthesis), and have an optional type following a slash,
+	// <special>[/<type>](<arguments>)
+	// e.g. sig/start(), hub(foo/bar/baz)
+	var RE = /^(.*?)(?:\/([^\(]+))?\((.*)\)$/;
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
+	 * @method create
 	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {compose.mixin} Object instance created out of the mixin of constructors and objects.
+	 * @return {Object} Object instance created out of the mixin of constructors and objects.
 	 */
 	function create(mixin) {
 		/*jshint validthis:true*/
@@ -126,11 +131,6 @@ define([
 		return Factory.apply(null, args);
 	}
 
-	/**
-	 * Returns a string representation of this constructor
-	 * @ignore
-	 * @returns {String}
-	 */
 	function ConstructorToString() {
 		var me = this;
 		var prototype = me[PROTOTYPE];
@@ -143,8 +143,9 @@ define([
 	/**
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @method constructor
+	 * @static
 	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @returns {compose.mixin} The constructor (class).
+	 * @return {compose.mixin} Object class created out of the mixin of constructors and objects.
 	 */
 	function Factory (mixin) {
 		var special;
@@ -213,7 +214,7 @@ define([
 				name = nameRaw = names[j];
 
 				// Iterate PRAGMAS
-				for (k = 0; k < PRAGMAS_LENGTH; k++) {
+				for (k = 0; k < PRAGMAS[LENGTH]; k++) {
 					// Get pragma
 					pragma = PRAGMAS[k];
 
@@ -224,15 +225,18 @@ define([
 				}
 
 				// Check if this matches a SPECIAL signature
-				if ((matches = RE_SPECIAL.exec(name))) {
+				if ((matches = RE.exec(name))) {
 					// Create special
 					special = {};
 
 					// Set special properties
 					special[GROUP] = group = matches[1];
-					special[FEATURES] = matches[2];
-					special[TYPE] = type = matches[3];
-					special[NAME] = group + "/" + type;
+					// An optional type.
+					if (type = matches[2]) {
+						special[TYPE] = type;
+					}
+					special[NAME] = group + (type ? "/" + type : "");
+					special[ARGS] = getargs.call(matches[3] || "");
 
 					// If the VALUE of the special does not duck-type Function, we should not store it
 					if (OBJECT_TOSTRING.call(special[VALUE] = arg[nameRaw]) !== "[object Function]") {
@@ -286,24 +290,26 @@ define([
 				? specials[group]
 				: specials[groups[groups[LENGTH]] = group] = [];
 
-			// Get or create types object
-			types = TYPES in group
-				? group[TYPES]
-				: group[TYPES] = [];
+			// Create an index for each type.
+			// TODO: In the future we might want to index each nested sub type.
+			if (type) {
+				// Get or create types object
+				types = TYPES in group
+									? group[TYPES]
+									: group[TYPES] = [];
 
-			// Get or create type object
-			type = type in group
-				? group[type]
-				: group[types[types[LENGTH]] = type] = specials[name] = [];
+				// Get or create type object
+				type = type in group
+								 ? group[type]
+								 : group[types[types[LENGTH]] = type] = specials[name] = [];
+
+				type[type[LENGTH]] = special;
+			}
 
 			// Store special in group/type
-			group[group[LENGTH]] = type[type[LENGTH]] = special;
+			group[group[LENGTH]] = special;
 		}
 
-		/*
-		 * Component constructor
-		 * @returns {Constructor} Constructor
-		 */
 		function Constructor () {
 			// Allow to be created either via 'new' or direct invocation
 			var instance = this instanceof Constructor
