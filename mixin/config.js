@@ -3,7 +3,7 @@
  */
 define([
 	"module",
-	"troopjs-util/merge"
+	"mu-merge"
 ], function (module, merge) {
 	"use strict";
 

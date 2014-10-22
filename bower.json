@@ -1,12 +1,13 @@
 {
   "name": "troopjs-compose",
-  "version": "3.0.1",
   "ignore": [
     "**/.*",
-    "node_modules"
+    "node_modules",
+    "bower_components"
   ],
   "dependencies": {
-    "troopjs-util": "~3",
-    "poly": "~0"
+    "poly": "~0",
+    "mu-getargs": "~0",
+    "mu-merge": "~0"
   }
 }

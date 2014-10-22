@@ -3,7 +3,7 @@
  */
 define([
 	"../mixin/decorator",
-	"troopjs-util/merge"
+	"mu-merge"
 ], function ExtendDecoratorModule(Decorator, merge) {
 	"use strict";
 

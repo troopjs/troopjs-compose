@@ -4,8 +4,8 @@
 define([
 	"./config",
 	"./decorator",
-	"troopjs-util/unique",
-	"troopjs-util/getargs",
+	"mu-unique",
+	"mu-getargs",
 	"poly/object"
 ], function FactoryModule(config, Decorator, unique, getargs) {
 	"use strict";
