@@ -7,7 +7,7 @@ define([
 	"mu-unique",
 	"mu-getargs",
 	"poly/object"
-], function FactoryModule(config, Decorator, unique, getargs) {
+], function (config, Decorator, unique, getargs) {
 	"use strict";
 
 	/**
@@ -371,7 +371,7 @@ define([
 
 	// Add CREATE to factoryDescriptors
 	Object.defineProperty(Factory, CREATE, {
-		"value": function FactoryCreate() {
+		"value": function () {
 			return Factory.apply(null, arguments)();
 		}
 	});

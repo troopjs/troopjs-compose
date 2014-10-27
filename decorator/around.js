@@ -1,7 +1,7 @@
 /**
  * @license MIT http://troopjs.mit-license.org/
  */
-define([ "../mixin/decorator" ], function AroundDecoratorModule(Decorator) {
+define([ "../mixin/decorator" ], function (Decorator) {
 	"use strict";
 
 	/**

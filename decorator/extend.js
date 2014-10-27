@@ -4,7 +4,7 @@
 define([
 	"../mixin/decorator",
 	"mu-merge"
-], function ExtendDecoratorModule(Decorator, merge) {
+], function (Decorator, merge) {
 	"use strict";
 
 	/**

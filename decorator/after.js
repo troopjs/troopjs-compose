@@ -1,7 +1,7 @@
 /**
  * @license MIT http://troopjs.mit-license.org/
  */
-define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
+define([ "../mixin/decorator" ], function (Decorator) {
 	"use strict";
 
 	/**
@@ -25,7 +25,7 @@ define([ "../mixin/decorator" ], function AfterDecoratorModule(Decorator) {
 			var previous = descriptor[VALUE];
 
 			descriptor[VALUE] = previous
-				? function decorated_after() {
+				? function () {
 					var me = this;
 					var retval = previous.apply(me, arguments);
 					var newRet = func.apply(me, arguments);
