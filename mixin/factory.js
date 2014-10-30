@@ -89,6 +89,7 @@ define([
 	var ARRAY_PROTO = Array[PROTOTYPE];
 	var ARRAY_PUSH = ARRAY_PROTO.push;
 	var ARRAY_UNSHIFT = ARRAY_PROTO.unshift;
+	var ARRAY_SLICE = ARRAY_PROTO.slice;
 	var OBJECT_TOSTRING = Object[PROTOTYPE][TOSTRING];
 	var TYPEOF_FUNCTION = "function";
 	var DISPLAYNAME = "displayName";
@@ -152,7 +153,7 @@ define([
 		var specials = [];
 		var specialsLength;
 		var arg;
-		var args = arguments;
+		var args = ARRAY_SLICE.call(arguments);
 		var argsLength = args[LENGTH];
 		var constructors = [];
 		var constructorsLength;
