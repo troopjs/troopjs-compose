@@ -18,7 +18,7 @@ define([
 	 *    - Avoid occasionally unexpected modification from prototype chain, from the prototype-based inheritance;
 	 *    - Reduced the function creation overhead in classical inheritance pattern;
 	 *  - **Advice decorator** for method overriding without the need for super call;
-	 *  - **Declarative** "special" functions preserved for sending messages to object, that never overrides parent ones.
+	 *  - **Declarative** "special" functions that never overrides parent ones reserved for event emission
 	 *
 	 * Basically Factory takes objects or constructors as arguments and returns a new constructor, the arguments are
 	 * composed from left to right, later arguments taken precedence (overriding) former arguments,
@@ -107,11 +107,7 @@ define([
 	var TYPES = "types";
 	var NAME = "name";
 	var PRAGMAS = config["pragmas"];
-
-	// A special must be in form of a function call (ended in parenthesis), and have an optional type following a slash,
-	// <special>[/<type>](<arguments>)
-	// e.g. sig/start(), hub(foo/bar/baz)
-	var RE = /^(.*?)(?:\/([^\(]+))?\((.*)\)$/;
+	var SPECIALS_PATTERN = config["specialsPattern"];
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
@@ -226,7 +222,7 @@ define([
 				}
 
 				// Check if this matches a SPECIAL signature
-				if ((matches = RE.exec(name))) {
+				if ((matches = SPECIALS_PATTERN.exec(name))) {
 					// Create special
 					special = {};
 
