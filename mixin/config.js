@@ -21,6 +21,18 @@ define([
 		 * @cfg {String|Function} pragmas.replace Replacement String or function
 		 * @protected
 		 */
-		"pragmas": []
+		"pragmas": [],
+
+
+		/**
+		 * @cfg {RegExp} specials Regular Expression used parse 'specials'.
+		 * A special must be in form of a function call (ended in parenthesis), and have an optional type following a slash
+		 *
+		 * ````
+		 * <special>[/<type>](<arguments>)
+		 * ````
+		 * @protected
+		 */
+		"specialsPattern": /^([^\/]+)(?:\/(.+?))?\((.*)\)$/
 	}, module.config());
 });
