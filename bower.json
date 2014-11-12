@@ -6,8 +6,9 @@
     "bower_components"
   ],
   "dependencies": {
-    "poly": "~0.6",
-    "mu-getargs": "~0",
-    "mu-merge": "~0"
+    "poly": "^0.6",
+    "mu-getargs": "^0",
+    "mu-merge": "^0",
+    "mu-unique": "^0"
   }
 }
