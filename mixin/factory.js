@@ -6,7 +6,8 @@ define([
 	"./decorator",
 	"mu-unique",
 	"mu-getargs",
-	"poly/object"
+	"poly/object",
+	"poly/function"
 ], function (config, Decorator, unique, getargs) {
 	"use strict";
 
@@ -161,6 +162,7 @@ define([
 		var j;
 		var k;
 		var pragma;
+		var replace;
 		var groups = specials[TYPES] = [];
 		var group;
 		var types;
@@ -216,7 +218,7 @@ define([
 					pragma = PRAGMAS[k];
 
 					// Process name with pragma, break if replacement occurred
-					if ((name = name.replace(pragma.pattern, pragma.replace)) !== nameRaw) {
+					if ((name = name.replace(pragma.pattern, typeof (replace = pragma.replace) === TYPEOF_FUNCTION ? replace.bind(arg) : replace)) !== nameRaw) {
 						break;
 					}
 				}
