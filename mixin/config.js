@@ -16,9 +16,7 @@ define([
 
 	return merge.call({
 		/**
-		 * @cfg {Object[]} pragmas Pragmas used to rewrite methods before processing
-		 * @cfg {RegExp} pragmas.pattern Matching pattern
-		 * @cfg {String|Function} pragmas.replace Replacement String or function
+		 * @cfg {compose.mixin.pragma[]} pragmas Pragmas used to rewrite methods before processing
 		 * @protected
 		 */
 		"pragmas": [],
