@@ -1,10 +1,10 @@
 /*globals buster:false*/
-buster.testCase("troopjs-compose/mixin/factory", function(run) {
+buster.testCase("troopjs-compose/factory", function(run) {
 	"use strict";
 
 	var assert = buster.referee.assert;
 
-	require([ "troopjs-compose/mixin/factory" ], function(Factory) {
+	require([ "troopjs-compose/factory" ], function(Factory) {
 
 		run({
 			"create": function() {

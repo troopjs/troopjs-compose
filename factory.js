@@ -80,8 +80,8 @@ define([
 	 *  		instance.somethingElse();
 	 *  		instance.evenMore();
 	 *
-	 * @class compose.mixin.factory
-	 * @mixin compose.mixin.config
+	 * @class compose.factory
+	 * @mixin compose.config
 	 * @static
 	 */
 
@@ -114,15 +114,15 @@ define([
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
 	 * @method create
 	 * @static
-	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @return {Object} Object instance created out of the mixin of constructors and objects.
+	 * @param {...(Function|Object)} composition One or more constructors or objects to be mixed in.
+	 * @return {compose.composition} Object instance created out of the composition of constructors and objects.
 	 */
-	function create(mixin) {
+	function create(composition) {
 		/*jshint validthis:true*/
 		return extend.apply(this, arguments)();
 	}
 
-	function extend(mixin) {
+	function extend(composition) {
 		/*jshint validthis:true*/
 		var args = [ this ];
 		ARRAY_PUSH.apply(args, arguments);
@@ -142,10 +142,10 @@ define([
 	 * Create a new constructor or to extend an existing one from multiple others constructors/objects.
 	 * @method constructor
 	 * @static
-	 * @param {...(Function|Object)} mixin One or more constructors or objects to be mixed in.
-	 * @return {compose.mixin} Object class created out of the mixin of constructors and objects.
+	 * @param {...(Function|Object)} composition One or more constructors or objects to be mixed in.
+	 * @return {compose.composition} Object class created out of the composition of constructors and objects.
 	 */
-	function Factory (mixin) {
+	function Factory (composition) {
 		var special;
 		var specials = [];
 		var specialsLength;

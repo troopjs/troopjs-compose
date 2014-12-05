@@ -1,7 +1,7 @@
 /**
  * @license MIT http://troopjs.mit-license.org/
  */
-define([ "../mixin/decorator" ], function (Decorator) {
+define([ "../decorator" ], function (Decorator) {
 	"use strict";
 
 	/**
@@ -18,7 +18,7 @@ define([ "../mixin/decorator" ], function (Decorator) {
 	 * @method constructor
 	 * @param {Function} func The decorator function which receives the same arguments as with the original, it's return
 	 * value (if not undefined) will be send as the arguments of original function.
-	 * @return {compose.mixin.decorator}
+	 * @return {compose.decorator}
 	 */
 	return function before(func) {
 		return new Decorator(function (descriptor) {

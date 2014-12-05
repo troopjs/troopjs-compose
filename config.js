@@ -8,15 +8,15 @@ define([
 	"use strict";
 
 	/**
-	 * Provides configuration for the {@link compose.mixin.factory}
-	 * @class compose.mixin.config
+	 * Provides configuration for the {@link compose.factory}
+	 * @class compose.config
 	 * @protected
 	 * @alias feature.config
 	 */
 
 	return merge.call({
 		/**
-		 * @cfg {compose.mixin.pragma[]} pragmas Pragmas used to rewrite methods before processing
+		 * @cfg {compose.pragma[]} pragmas Pragmas used to rewrite methods before processing
 		 * @protected
 		 */
 		"pragmas": [],

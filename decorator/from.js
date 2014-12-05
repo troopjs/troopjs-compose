@@ -1,7 +1,7 @@
 /**
  * @license MIT http://troopjs.mit-license.org/
  */
-define([ "../mixin/decorator" ], function (Decorator) {
+define([ "../decorator" ], function (Decorator) {
 	"use strict";
 
 	/**
@@ -19,7 +19,7 @@ define([ "../mixin/decorator" ], function (Decorator) {
 	 * @method constructor
 	 * @param {Function} [which] The other class from which to borrow the method, otherwise to borrow from the host class.
 	 * @param {String} [prop] The property name to borrow from, otherwise to borrow the same property name.
-	 * @return {compose.mixin.decorator}
+	 * @return {compose.decorator}
 	 */
 	return function from(which, prop) {
 		// Shifting arguments.

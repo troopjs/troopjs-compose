@@ -1,11 +1,11 @@
 /*globals buster:false*/
-buster.testCase("troopjs-compose/mixin/config", function(run) {
+buster.testCase("troopjs-compose/config", function(run) {
 	"use strict";
 
 	var assert = buster.referee.assert;
 	var refute = buster.referee.refute;
 
-	require([ "troopjs-compose/mixin/config" ], function(config) {
+	require([ "troopjs-compose/config" ], function(config) {
 
 		var RE = config["specialsPattern"];
 
