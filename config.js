@@ -10,7 +10,7 @@ define([
 	/**
 	 * Provides configuration for the {@link compose.factory}
 	 * @class compose.config
-	 * @protected
+	 * @private
 	 * @alias feature.config
 	 */
 
