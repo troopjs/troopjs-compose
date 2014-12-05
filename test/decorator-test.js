@@ -5,7 +5,7 @@ buster.testCase("troopjs-compose/decorator", function(run) {
 	var assert = buster.referee.assert;
 
 	require([
-		"troopjs-compose/mixin/factory",
+		"troopjs-compose/factory",
 		"troopjs-compose/decorator/after",
 		"troopjs-compose/decorator/around",
 		"troopjs-compose/decorator/before",

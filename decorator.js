@@ -5,8 +5,9 @@ define([ "poly/object" ], function () {
 	"use strict";
 
 	/**
-	 * Decorator provides customized way to add properties/methods to object created by {@link compose.mixin.factory}.
-	 * @class compose.mixin.decorator
+	 * Decorator provides customized way to add properties/methods to object created by {@link compose.factory}.
+	 * @class compose.decorator
+	 * @protected
 	 */
 
 	/**

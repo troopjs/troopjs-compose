@@ -2,7 +2,7 @@
  * @license MIT http://troopjs.mit-license.org/
  */
 define([
-	"../mixin/decorator",
+	"../decorator",
 	"mu-merge"
 ], function (Decorator, merge) {
 	"use strict";
@@ -21,7 +21,7 @@ define([
 	 * Create a decorator that is to augment an existing Object property.
 	 * @method constructor
 	 * @param {Function|Object...} ext One or more objects to merge into this property, or a function that returns a new object to be used.
-	 * @return {compose.mixin.decorator}
+	 * @return {compose.decorator}
 	 */
 	return function extend(ext) {
 		var args = arguments;

@@ -1,7 +1,8 @@
 /**
  * Pragma interface.
- * @class compose.mixin.pragma
+ * @class compose.pragma
  * @interface
+ * @private
  */
 
 
