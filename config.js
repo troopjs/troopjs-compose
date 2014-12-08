@@ -8,6 +8,19 @@ define([
 	"use strict";
 
 	/**
+	 * Pragma interface.
+	 * @class compose.config.pragma
+	 * @interface
+	 * @private
+	 */
+	/**
+	 * @property {RegExp} pattern Matching pattern
+	 */
+	/**
+	 * @property {String|Function} replace Replacement String or function
+	 */
+
+	/**
 	 * Provides configuration for the {@link compose.factory}
 	 * @class compose.config
 	 * @private
@@ -16,14 +29,16 @@ define([
 
 	return merge.call({
 		/**
-		 * @cfg {compose.pragma[]} pragmas Pragmas used to rewrite methods before processing
+		 * @cfg {compose.config.pragma[]}
+		 * Pragmas used to rewrite methods before processing
 		 * @protected
 		 */
 		"pragmas": [],
 
 
 		/**
-		 * @cfg {RegExp} specials Regular Expression used parse 'specials'.
+		 * @cfg {RegExp}
+		 * Regular Expression used parse 'specials'.
 		 * A special must be in form of a function call (ended in parenthesis), and have an optional type following a slash
 		 *
 		 * ````
@@ -31,6 +46,6 @@ define([
 		 * ````
 		 * @protected
 		 */
-		"specialsPattern": /^([^\/]+)(?:\/(.+?))?\((.*)\)$/
+		"specials": /^([^\/]+)(?:\/(.+?))?\((.*)\)$/
 	}, module.config());
 });

@@ -108,7 +108,7 @@ define([
 	var TYPES = "types";
 	var NAME = "name";
 	var PRAGMAS = config["pragmas"];
-	var SPECIALS_PATTERN = config["specialsPattern"];
+	var PATTERN = config[SPECIALS];
 
 	/**
 	 * Instantiate immediately after extending this constructor from multiple others constructors/objects.
@@ -224,7 +224,7 @@ define([
 				}
 
 				// Check if this matches a SPECIAL signature
-				if ((matches = SPECIALS_PATTERN.exec(name))) {
+				if ((matches = PATTERN.exec(name))) {
 					// Create special
 					special = {};
 

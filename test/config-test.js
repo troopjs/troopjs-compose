@@ -7,19 +7,19 @@ buster.testCase("troopjs-compose/config", function(run) {
 
 	require([ "troopjs-compose/config" ], function(config) {
 
-		var RE = config["specialsPattern"];
+		var PATTERN = config.specials;
 
 		run({
 			"specialsPattern": function() {
-				refute.match("prefix", RE);
-				refute.match("prefix/type", RE);
-				assert.match("prefix()", RE);
-				assert.match("prefix(args)", RE);
-				assert.match("prefix(a,r,g,s)", RE);
-				assert.match("prefix(a, (r), g, s)", RE);
-				assert.match("prefix()()", RE);
-				assert.match("prefix/type()", RE);
-				assert.match("prefix/type(args)", RE);
+				refute.match("prefix", PATTERN);
+				refute.match("prefix/type", PATTERN);
+				assert.match("prefix()", PATTERN);
+				assert.match("prefix(args)", PATTERN);
+				assert.match("prefix(a,r,g,s)", PATTERN);
+				assert.match("prefix(a, (r), g, s)", PATTERN);
+				assert.match("prefix()()", PATTERN);
+				assert.match("prefix/type()", PATTERN);
+				assert.match("prefix/type(args)", PATTERN);
 			}
 		});
 	});
