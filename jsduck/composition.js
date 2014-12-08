@@ -7,7 +7,6 @@
  * @private
  */
 
-
 /**
  * Extend this constructor from multiple others constructors/objects.
  * @method extend
