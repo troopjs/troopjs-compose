@@ -39,13 +39,11 @@ define([
 		/**
 		 * @cfg {RegExp}
 		 * Regular Expression used parse 'specials'.
-		 * A special must be in form of a function call (ended in parenthesis), and have an optional type following a slash
-		 *
 		 * ````
-		 * <special>[/<type>](<arguments>)
+		 * <special>/<type>[(<arguments>)]
 		 * ````
 		 * @protected
 		 */
-		"specials": /^([^\/]+)(?:\/(.+?))?\((.*)\)$/
+		"specials": /^([^\/]+)\/(.+?)(?:\((.*)\))?$/
 	}, module.config());
 });
