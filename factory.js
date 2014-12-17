@@ -4,8 +4,8 @@
 define([
 	"./config",
 	"./decorator",
-	"mu-unique",
-	"mu-getargs",
+	"mu-unique/main",
+	"mu-getargs/main",
 	"poly/object",
 	"poly/function"
 ], function (config, Decorator, unique, getargs) {
