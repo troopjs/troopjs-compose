@@ -3,7 +3,7 @@
  */
 define([
 	"../decorator",
-	"mu-merge"
+	"mu-merge/main"
 ], function (Decorator, merge) {
 	"use strict";
 

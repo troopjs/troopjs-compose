@@ -3,7 +3,7 @@
  */
 define([
 	"module",
-	"mu-merge"
+	"mu-merge/main"
 ], function (module, merge) {
 	"use strict";
 
