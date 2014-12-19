@@ -10,5 +10,8 @@
     "mu-getargs": "^0",
     "mu-merge": "^0",
     "mu-unique": "^0"
+  },
+  "devDependencies": {
+    "requirejs": "^2.1"
   }
 }
