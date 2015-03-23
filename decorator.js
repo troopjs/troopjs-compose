@@ -1,7 +1,7 @@
 /**
  * @license MIT http://troopjs.mit-license.org/
  */
-define([ "poly/object" ], function () {
+define(function () {
 	"use strict";
 
 	/**

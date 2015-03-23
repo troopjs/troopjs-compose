@@ -5,9 +5,7 @@ define([
 	"./config",
 	"./decorator",
 	"mu-unique/main",
-	"mu-getargs/main",
-	"poly/object",
-	"poly/function"
+	"mu-getargs/main"
 ], function (config, Decorator, unique, getargs) {
 	"use strict";
 
