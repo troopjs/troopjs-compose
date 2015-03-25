@@ -1,3 +1,3 @@
 require({
-	"baseUrl": "bower_components"
+  "baseUrl": "bower_components"
 });
