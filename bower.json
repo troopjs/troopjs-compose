@@ -7,8 +7,7 @@
   ],
   "dependencies": {
     "mu-getargs": "^0",
-    "mu-merge": "^0.0.2",
-    "mu-unique": "^0"
+    "mu-merge": "^0.0.2"
   },
   "devDependencies": {
     "requirejs": "^2.1"

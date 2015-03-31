@@ -4,9 +4,8 @@
 define([
   "./config",
   "./decorator",
-  "mu-unique/main",
   "mu-getargs/main"
-], function (config, Decorator, unique, getargs) {
+], function (config, Decorator, getargs) {
   "use strict";
 
   /**
@@ -125,6 +124,30 @@ define([
     var args = [ this ];
     ARRAY_PUSH.apply(args, arguments);
     return Factory.apply(NULL, args);
+  }
+
+  function unique () {
+    /*eslint no-labels:0, block-scoped-var:0, no-return-assign:0*/
+    var me = this;
+    var o;
+    var i;
+    var j;
+    var k;
+    var length;
+
+    outer: for (i = k = 0, length = me[LENGTH]; i < length; i++) {
+      o = me[i];
+
+      for (j = 0; j < i; j++) {
+        if (o === me[j]) {
+          continue outer;
+        }
+      }
+
+      me[k++] = o;
+    }
+
+    return me[LENGTH] = k;
   }
 
   function ConstructorToString () {
