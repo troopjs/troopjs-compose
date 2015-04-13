@@ -21,4 +21,5 @@
  * @inheritdoc compose.factory#create
  * @inheritable
  * @static
+ * @return {Object} Instance of this class
  */
